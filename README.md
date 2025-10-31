@@ -26,7 +26,8 @@ Bu proje, [ 'gerçek zamanlı video akışında yüzleri tespit etmek ve tanıma
 
 
 
-![Özellik Ekran Görüntüsü](link/to/your/feature_screenshot.gif)
+![Özellik Ekran Görüntüsü](![WhatsApp Görsel 2025-10-31 saat 22 33 03_853166bc](https://github.com/user-attachments/assets/63682916-8e52-4b18-91ba-3d828ca3f746)
+)
 
 
 ## 🛠️ Kullanılan Teknolojiler
@@ -110,4 +111,7 @@ Katkılarınız projeyi daha iyi bir hale getirecektir! Katkıda bulunmak isters
 4.  Branch'inizi Push'layın (`git push origin feature/AmazingFeature`).
 5.  Bir Pull Request açın.
 
+Proje Sahibi
+Ad Soyad:Zehra Dağaşan
+Github:
 
