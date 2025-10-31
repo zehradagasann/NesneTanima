@@ -49,17 +49,16 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin.
 
 1.  **Repository'yi klonlayın:**
     ```sh
-    git clone 
+    git clone https://github.com/zehradagasann/NesneTanima.git
     ```
 2.  **Projeyi Visual Studio'da açın:**
     Klonladığınız klasördeki `.sln` uzantılı dosyayı Visual Studio ile açın.
 
 3.  **NuGet Paketlerini Yükleyin:**
     Solution Explorer'da projeye sağ tıklayıp "Manage NuGet Packages" seçeneğini seçin. Gerekli paketlerin (özellikle OpenCvSharp) geri yüklenmesini (Restore) sağlayın. Eğer otomatik olarak yüklenmezse, aşağıdaki paketleri kurun:
-    ```sh
-    Install-Package OpenCvSharp4.Windows
+   
     ```
-    *Eğer farklı bir kütüphane kullanıyorsanız (örn: Emgu.CV), onu buraya yazın.*
+  
 
 4.  **Projeyi Derleyin (Build):**
     Visual Studio menüsünden `Build > Build Solution` seçeneğini seçin.
@@ -69,30 +68,36 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin.
 
 ## 📖 Kullanım
 
-Uygulama başlatıldıktan sonra [uygulamanın nasıl kullanılacağını kısaca anlatın. Örneğin: 'Kamerayı Başlat' butonuna tıklayarak canlı görüntüyü alabilir ve 'Yüzleri Tespit Et' seçeneği ile yüz algılamayı aktif edebilirsiniz.]
+Kamerayı başlatıp yüzleri ve nesneleri tespit edebilirsiniz.
 
 ### Kod Örneği
 
 Projedeki temel bir görüntü işleme fonksiyonunun basit bir örneği:
 
-```csharp
-using OpenCvSharp;
+ private void InitializeOpenCV()
+ {
+     try
+     {
+         string exePath = Application.StartupPath;
+         string face1 = System.IO.Path.Combine(exePath, "haarcascade_frontalface_default.xml");
+         string eye1 = System.IO.Path.Combine(exePath, "haarcascade_eye.xml");
 
-public void ConvertToGrayScale(string imagePath)
-{
-    // Bir görüntüyü diskten yükle
-    Mat src = new Mat(imagePath, ImreadModes.Color);
+         faceCascade = new CascadeClassifier(face1);
+         eyeCascade = new CascadeClassifier(eye1);
 
-    // Gri tonlamaya çevirmek için yeni bir Mat nesnesi oluştur
-    Mat gray = new Mat();
-    Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
+         frame = new Mat();
 
-    // Sonucu ekranda göster
-    Cv2.ImShow("Kaynak Görüntü", src);
-    Cv2.ImShow("Gri Tonlamalı Görüntü", gray);
-    Cv2.WaitKey(0); // Bir tuşa basılana kadar bekle
-    Cv2.DestroyAllWindows(); // Tüm pencereleri kapat
-}
+         if (faceCascade.Empty())
+         {
+             MessageBox.Show($"UYARI: haarcascade_frontalface_default.xml dosyası bulunamadı!\nAranılan konum: {face1}\n\nLütfen dosyayı buraya kopyalayın.");
+         }
+     }
+     catch (Exception ex)
+     {
+         MessageBox.Show($"OpenCV başlatma hatası: {ex.Message}");
+     }
+ }
+
 ```
 
 ## 🤝 Katkıda Bulunma
@@ -105,6 +110,4 @@ Katkılarınız projeyi daha iyi bir hale getirecektir! Katkıda bulunmak isters
 4.  Branch'inizi Push'layın (`git push origin feature/AmazingFeature`).
 5.  Bir Pull Request açın.
 
-## 📝 Lisans
 
-Bu proje **[Lisans Adı, örn: MIT]** Lisansı altında lisanslanmışt
