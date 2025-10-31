@@ -113,5 +113,5 @@ Katkılarınız projeyi daha iyi bir hale getirecektir! Katkıda bulunmak isters
 
 Proje Sahibi
 Ad Soyad:Zehra Dağaşan
-Github:
+Github:https://github.com/zehradagasann/NesneTanima
 
